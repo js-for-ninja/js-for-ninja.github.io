@@ -159,6 +159,8 @@ pre {
   float: left; }
   .site-title, .site-title:visited {
     color: #424242; }
+  .site-title > img {
+    width: 170px; }
 
 .site-nav {
   float: right;
