@@ -2,24 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>JS for Ninja</title>
-    <description>JavaScript for Ninja - is a web site about web development with JS. Only JS, only the best!
+    <description>JavaScript for Ninja is a web site about web development with JS.
 </description>
     <link>http://js-for.ninja/</link>
     <atom:link href="http://js-for.ninja/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 17 Nov 2014 22:31:08 +0100</pubDate>
-    <lastBuildDate>Mon, 17 Nov 2014 22:31:08 +0100</lastBuildDate>
+    <pubDate>Sat, 22 Nov 2014 20:11:51 +0100</pubDate>
+    <lastBuildDate>Sat, 22 Nov 2014 20:11:51 +0100</lastBuildDate>
     <generator>Jekyll v2.5.1</generator>
     
       <item>
-        <title>Welcome to JS for Ninja!</title>
-        <description>&lt;p&gt;Welcome!&lt;/p&gt;
-</description>
-        <pubDate>Wed, 12 Nov 2014 23:38:55 +0100</pubDate>
-        <link>http://js-for.ninja/js-for-ninja/2014/11/12/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">http://js-for.ninja/js-for-ninja/2014/11/12/welcome-to-jekyll.html</guid>
+        <title>Experiments: Using Image Sprites and IMG Tags to Display a Set of Images</title>
+        <pubDate>Tue, 18 Nov 2014 00:14:00 +0100</pubDate>
+        <link>http://js-for.ninja/experiments-using-image-sprites-and-img-tags-to-display-a-set-of-images.html</link>
+        <guid isPermaLink="true">http://js-for.ninja/experiments-using-image-sprites-and-img-tags-to-display-a-set-of-images.html</guid>
         
         
-        <category>js-for-ninja</category>
+        <category>javascript</category>
+        
+        <category>ember.js</category>
+        
+        <category>koa.js</category>
+        
+        <category>img</category>
+        
+        <category>sprites</category>
         
       </item>
     
