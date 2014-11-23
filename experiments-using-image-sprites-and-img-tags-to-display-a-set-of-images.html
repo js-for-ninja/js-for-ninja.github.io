@@ -301,6 +301,8 @@ div[id^='sprite'] img {
 
 <p>Caching may help to reduce the amount of cpu resources required to generate a sprite. For example, if images shown on a page are always the same (e.g. 10 the most popular products) it makes sense to cache the sprite image so there is no overheadexcept for the first request. If each item associated with an image or the image itself has an unique ID, this ID may be used to define the spire ID. For example, products #3, #4, #5, #6 would result in a sprite 3_4_5_6.jpg. Thus, one can easily check whether there is a sprite image for a given set of items already.</p>
 
+<p>The CSS is awful and it’s used only to demonstrate the approach. A more compact and general CSS may be defined. Also the coordinates of the images with the sprite may be provided by the server as it knows them. Thus, there will be no need to define them in the CSS beforehand.</p>
+
 <p>Have fun!</p>
 
 
