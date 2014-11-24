@@ -2,6 +2,9 @@
 
 jekyll build
 
+
+rm -rf ../js-for-ninja.github.io/*
+
 cp -R ./_site/* ../js-for-ninja.github.io/
 
 cd ../js-for-ninja.github.io/
