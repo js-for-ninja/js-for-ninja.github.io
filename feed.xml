@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>JS for Ninja</title>
-    <description>JavaScript for Ninja is a web site about web development with JS.
+    <description>JavaScript for Ninja is a blog about web development.
 </description>
     <link>http://js-for.ninja/</link>
     <atom:link href="http://js-for.ninja/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 30 Nov 2014 12:31:17 +0100</pubDate>
-    <lastBuildDate>Sun, 30 Nov 2014 12:31:17 +0100</lastBuildDate>
+    <pubDate>Sun, 30 Nov 2014 12:32:40 +0100</pubDate>
+    <lastBuildDate>Sun, 30 Nov 2014 12:32:40 +0100</lastBuildDate>
     <generator>Jekyll v2.5.2</generator>
     
       <item>
