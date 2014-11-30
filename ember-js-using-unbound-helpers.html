@@ -86,7 +86,7 @@
 
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{{</span><span class="nx">unbound</span> <span class="nx">myBoundHelper</span> <span class="s1">&#39;param1&#39;</span><span class="p">}}</span> <span class="c1">// =&gt; output of the myBoundHelper</span></code></pre></div>
 
-<p>This will transoform the myBoundHelper (which is bound) into an unbound one. The effect is exactly the same - what’s been rendered will not be updated when the model changes. Theoretically there may be some performance benefits of using the unbound helper when you don’t need bindings. But I didn’t do any benchmarks to prove this.</p>
+<p>This will transform the myBoundHelper (which is bound) into an unbound one. The effect is exactly the same - what’s been rendered will not be updated when the model changes. Theoretically there may be some performance benefits of using the unbound helper when you don’t need bindings. But I didn’t do any benchmarks to prove this.</p>
 
 <p>Nevertheless, there is one more trick that I’ve discovered - using the unbound helper together with the #each block helper does not create an unbound version of the #each helper.</p>
 
