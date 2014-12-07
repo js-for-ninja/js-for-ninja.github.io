@@ -78,13 +78,13 @@
 
 <p>The <a href="http://emberjs.com/api/classes/Ember.Handlebars.helpers.html#method_unbound">unbound</a> helper allows outputting the result without a binding. For example, you can do this to render an attribute:</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">img</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&quot;{{unbound thumbpath}}&quot;</span> <span class="o">/&gt;</span> <span class="c1">// =&gt; &lt;img src=&quot;someUrl&quot; /&gt;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-html-handlebars" data-lang="html+handlebars"><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;</span><span class="cp">{{</span><span class="nv">unbound</span> <span class="nv">thumbpath</span><span class="cp">}}</span><span class="s">&quot;</span> <span class="nt">/&gt;</span> // =&gt; <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;someUrl&quot;</span> <span class="nt">/&gt;</span></code></pre></div>
 
 <p>But this trick has its price - the value of the thumbpath will not be updated after you change the thumbpath in the model. So use it only when you don’t need a binding.</p>
 
 <p>You may use it in a conjunction with another bound helper. For example:</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{{</span><span class="nx">unbound</span> <span class="nx">myBoundHelper</span> <span class="s1">&#39;param1&#39;</span><span class="p">}}</span> <span class="c1">// =&gt; output of the myBoundHelper</span></code></pre></div>
+<div class="highlight"><pre><code class="language-html-handlebars" data-lang="html+handlebars"><span class="cp">{{</span><span class="nv">unbound</span> <span class="nv">myBoundHelper</span> <span class="s1">&#39;param1&#39;</span><span class="cp">}}</span> // =&gt; output of the myBoundHelper</code></pre></div>
 
 <p>This will transform the myBoundHelper (which is bound) into an unbound one. The effect is exactly the same - what’s been rendered will not be updated when the model changes. Theoretically there may be some performance benefits of using the unbound helper when you don’t need bindings. But I didn’t do any benchmarks to prove this.</p>
 
@@ -96,13 +96,13 @@
 
 <p>First, I render the image using the unbound helper:</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">img</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&quot;{{unbound thumbpath}}&quot;</span> <span class="o">/&gt;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-html-handlebars" data-lang="html+handlebars"><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;</span><span class="cp">{{</span><span class="nv">unbound</span> <span class="nv">thumbpath</span><span class="cp">}}</span><span class="s">&quot;</span> <span class="nt">/&gt;</span></code></pre></div>
 
 <p>Then I render an array of items using the #each helper:</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{{</span><span class="err">#</span><span class="nx">unbound</span> <span class="nx">each</span> <span class="nx">item</span> <span class="k">in</span> <span class="nx">items</span><span class="p">}}</span>
-    <span class="p">{{</span><span class="nx">item</span><span class="p">}}</span>
-<span class="p">{{</span><span class="err">/unbound}}</span></code></pre></div>
+<div class="highlight"><pre><code class="language-html-handlebars" data-lang="html+handlebars"><span class="cp">{{</span><span class="nf">#unbound</span> <span class="k">each</span> <span class="nv">item</span> <span class="k">in</span> <span class="nv">items</span><span class="cp">}}</span>
+    <span class="cp">{{</span><span class="nv">item</span><span class="cp">}}</span>
+<span class="cp">{{</span><span class="nf">/unbound</span><span class="cp">}}</span></code></pre></div>
 
 <p>Thanks for reading. Please comment and subscribe!</p>
 
