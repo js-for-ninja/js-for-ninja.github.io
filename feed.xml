@@ -6,9 +6,22 @@
 </description>
     <link>http://js-for.ninja/</link>
     <atom:link href="http://js-for.ninja/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 25 Jan 2015 19:14:23 +0100</pubDate>
-    <lastBuildDate>Sun, 25 Jan 2015 19:14:23 +0100</lastBuildDate>
+    <pubDate>Tue, 03 Feb 2015 20:00:12 +0100</pubDate>
+    <lastBuildDate>Tue, 03 Feb 2015 20:00:12 +0100</lastBuildDate>
     <generator>Jekyll v2.5.2</generator>
+    
+      <item>
+        <title>Ember.js: How to Hide Views Using IsVisible Property</title>
+        <pubDate>Tue, 03 Feb 2015 20:57:13 +0100</pubDate>
+        <link>http://js-for.ninja/ember-js-how-to-hide-views-using-is-visible-property.html</link>
+        <guid isPermaLink="true">http://js-for.ninja/ember-js-how-to-hide-views-using-is-visible-property.html</guid>
+        
+        
+        <category>ember.js</category>
+        
+        <category>isvisible</category>
+        
+      </item>
     
       <item>
         <title>Ember.js: One Case When Bindings Do Not Work</title>
