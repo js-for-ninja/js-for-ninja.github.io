@@ -154,12 +154,9 @@
 
 <p>Now we can fully install Ember.js:</p>
 
-<p>```</p>
-
-<p>jspm init
-  jspm install &amp;&amp; jspm install github:components/ember@1.11.0-beta.2 -o overrides/ember.json</p>
-
-<p>```</p>
+<pre><code>jspm init
+jspm install &amp;&amp; jspm install github:components/ember@1.11.0-beta.2 -o overrides/ember.json
+</code></pre>
 
 <p><code>jspm install</code> will install all dependencies and <code>jspm install github:components/ember@1.11.0-beta.2 -o overrides/ember.json</code> will install Ember with the specified override.</p>
 
@@ -167,33 +164,30 @@
 
 <p>Let’s use this Gulp file:</p>
 
-<p>```</p>
+<pre><code>var gulp = require('gulp');
+var jspm = require('jspm');
 
-<p>var gulp = require(‘gulp’);
-var jspm = require(‘jspm’);</p>
-
-<p>// watch files for changes and reload
-gulp.task(‘watch’, function() {
-  var browserSync = require(‘browser-sync’);
+// watch files for changes and reload
+gulp.task('watch', function() {
+  var browserSync = require('browser-sync');
   browserSync({
     online: false,
     server: {
-      baseDir: [‘app’]
+      baseDir: ['app']
     }
-  });</p>
+  });
 
-<p>gulp.watch([
-    ‘app/<em>*/</em>.*’
+  gulp.watch([
+    'app/**/*.*'
   ], function(file){
     browserSync.reload(file.path);
   });
-});</p>
+});
 
-<p>gulp.task(‘jspm’, function() {
-  return jspm.bundleSFX(‘main’, ‘dist/app.js’, { sourceMaps: false });
-});</p>
-
-<p>```</p>
+gulp.task('jspm', function() {
+  return jspm.bundleSFX('main', 'dist/app.js', { sourceMaps: false });
+});
+</code></pre>
 
 <p>The file defines two tasks: watch and jspm. Watch will start the local webserver and jspm which will create a production bundle of our application code with all dependencies.</p>
 
