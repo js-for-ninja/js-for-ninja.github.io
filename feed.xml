@@ -6,35 +6,9 @@
 </description>
     <link>http://js-for.ninja/</link>
     <atom:link href="http://js-for.ninja/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 03 Feb 2015 20:00:12 +0100</pubDate>
-    <lastBuildDate>Tue, 03 Feb 2015 20:00:12 +0100</lastBuildDate>
-    <generator>Jekyll v2.5.2</generator>
-    
-      <item>
-        <title>Ember.js: How to Hide Views Using IsVisible Property</title>
-        <pubDate>Tue, 03 Feb 2015 20:57:13 +0100</pubDate>
-        <link>http://js-for.ninja/ember-js-how-to-hide-views-using-is-visible-property.html</link>
-        <guid isPermaLink="true">http://js-for.ninja/ember-js-how-to-hide-views-using-is-visible-property.html</guid>
-        
-        
-        <category>ember.js</category>
-        
-        <category>isvisible</category>
-        
-      </item>
-    
-      <item>
-        <title>Ember.js: One Case When Bindings Do Not Work</title>
-        <pubDate>Sun, 11 Jan 2015 14:38:00 +0100</pubDate>
-        <link>http://js-for.ninja/ember-js-one-case-when-bindings-do-not-work.html</link>
-        <guid isPermaLink="true">http://js-for.ninja/ember-js-one-case-when-bindings-do-not-work.html</guid>
-        
-        
-        <category>ember.js</category>
-        
-        <category>bindings</category>
-        
-      </item>
+    <pubDate>Thu, 05 Mar 2015 21:52:55 +0100</pubDate>
+    <lastBuildDate>Thu, 05 Mar 2015 21:52:55 +0100</lastBuildDate>
+    <generator>Jekyll v2.5.3</generator>
     
       <item>
         <title>Ember.js: My Observers Do Not Work or RTFM</title>
