@@ -195,57 +195,44 @@ gulp.task('jspm', function() {
 
 <p>In the <code>app</code> folder, let’s create <code>app.js</code> and <code>index.html</code>:</p>
 
-<p>```</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="c">&lt;!-- index.html --&gt;</span>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;title&gt;</span>Ember JSPM Demo<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=utf-8&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content=</span><span class="s">&quot;height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;jspm_packages/system.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;config.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script&gt;</span>
+    <span class="nx">System</span><span class="p">.</span><span class="nx">baseURL</span> <span class="o">=</span> <span class="s1">&#39;/&#39;</span><span class="p">;</span>
+    <span class="nx">System</span><span class="p">.</span><span class="kr">import</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">);</span>
+  <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span></code></pre></div>
 
-<!-- index.html -->
-<p>&lt;!DOCTYPE html&gt;</p>
-<html>
-<head>
-  <title>Ember JSPM Demo</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <script src="jspm_packages/system.js"></script>
-  <script src="config.js"></script>
-  <script>
-    System.baseURL = '/';
-    System.import('app');
-  </script>
-</head>
-<body>
-</body>
-</html>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// app.js</span>
 
-<p>```</p>
+<span class="kr">import</span> <span class="nx">Ember</span> <span class="nx">from</span> <span class="s1">&#39;ember&#39;</span><span class="p">;</span>
 
-<p>```
-// app.js</p>
+<span class="kr">import</span> <span class="nx">layout</span> <span class="nx">from</span> <span class="s1">&#39;templates/component-layout.hbs!&#39;</span><span class="p">;</span>
 
-<p>import Ember from ‘ember’;</p>
+<span class="kd">var</span> <span class="nx">MyComponent</span> <span class="o">=</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="nx">layout</span><span class="o">:</span> <span class="nx">layout</span>
+<span class="p">});</span>
 
-<p>import layout from ‘templates/component-layout.hbs!’;</p>
+<span class="nx">Ember</span><span class="p">.</span><span class="nx">Handlebars</span><span class="p">.</span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;my-component&#39;</span><span class="p">,</span> <span class="nx">MyComponent</span><span class="p">);</span>
 
-<p>var MyComponent = Ember.Component.extend({
-  layout: layout
-});</p>
-
-<p>Ember.Handlebars.helper(‘my-component’, MyComponent);</p>
-
-<p>import tmpl from ‘templates/application.hbs!ihbs’;
-var Demo = Ember.Application.create();</p>
-
-<p>```</p>
+<span class="kr">import</span> <span class="nx">tmpl</span> <span class="nx">from</span> <span class="s1">&#39;templates/application.hbs!ihbs&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">Demo</span> <span class="o">=</span> <span class="nx">Ember</span><span class="p">.</span><span class="nx">Application</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span></code></pre></div>
 
 <p>Let’s create <code>templates</code> folder and put <code>application.hbs</code> and <code>component-layout.hbs</code> in there:</p>
 
-<p>```
-Application Template</p>
+<div class="highlight"><pre><code class="language-html-handlebars" data-lang="html+handlebars">Application Template</code></pre></div>
 
-<p>```</p>
-
-<p>```</p>
-
-<p>This is component
-```</p>
+<div class="highlight"><pre><code class="language-html-handlebars" data-lang="html+handlebars">This is component</code></pre></div>
 
 <p>Run gulp watch now and you’ll we see the working app:</p>
 
