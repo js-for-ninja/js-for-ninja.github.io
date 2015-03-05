@@ -6,12 +6,12 @@
 </description>
     <link>http://js-for.ninja/</link>
     <atom:link href="http://js-for.ninja/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 05 Mar 2015 22:22:16 +0100</pubDate>
-    <lastBuildDate>Thu, 05 Mar 2015 22:22:16 +0100</lastBuildDate>
+    <pubDate>Thu, 05 Mar 2015 22:22:56 +0100</pubDate>
+    <lastBuildDate>Thu, 05 Mar 2015 22:22:56 +0100</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
-        <title>ustom Build Workflows Using Ember and JSPM</title>
+        <title>Custom Build Workflows Using Ember and JSPM</title>
         <pubDate>Thu, 05 Mar 2015 23:06:00 +0100</pubDate>
         <link>http://js-for.ninja/custom-ember-dev-workflow-using-jspm.html</link>
         <guid isPermaLink="true">http://js-for.ninja/custom-ember-dev-workflow-using-jspm.html</guid>
