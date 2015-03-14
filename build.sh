@@ -9,7 +9,7 @@ cp -R ./_site/* ../js-for-ninja.github.io/
 
 cd ../js-for-ninja.github.io/
 
-git add .
+git add . --all
 
 git commit -m "Relese" -a
 
