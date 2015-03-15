@@ -40,15 +40,15 @@
 
   $(function () {
 
-    var update = function(){
+    var update = function(k){
       $('.timeline-block').each(function(){
-        if( $(this).offset().top <= $(window).scrollTop()+$(window).height()*0.85 && $(this).find('.timeline-img').hasClass('is-hidden') ) {
+        if( $(this).offset().top <= $(window).scrollTop()+$(window).height()*k && $(this).find('.timeline-img').hasClass('is-hidden') ) {
           $(this).find('.timeline-img, .timeline-content').removeClass('is-hidden').addClass('bounce-in');
         }
       });
     };
-    update();
-    $(window).on('scroll', debounce(update, 100));
+    update(1);
+    $(window).on('scroll', debounce(function () { update(0.75); }, 100));
   })
 
   </script>
