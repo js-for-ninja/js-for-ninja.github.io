@@ -49,6 +49,7 @@
     };
     update(1);
     $(window).on('scroll', debounce(function () { update(0.75); }, 100));
+    $(window).on('resize', debounce(function () { update(1); }, 100));
   })
 
   </script>
