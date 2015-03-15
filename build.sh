@@ -2,6 +2,8 @@
 
 jekyll build
 
+rm -rf _site/node_modules
+
 gulp autoprefixer
 
 rm -rf ../js-for-ninja.github.io/*
