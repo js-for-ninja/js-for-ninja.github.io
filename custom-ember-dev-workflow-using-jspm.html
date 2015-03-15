@@ -273,6 +273,24 @@ gulp.task('jspm', function() {
 
 <p>You can check them out here: <a href="https://github.com/n-fuse/plugin-ember-hbs">plugin-ember-hbs</a> and here <a href="https://github.com/n-fuse/plugin-ember-ihbs">plugin-ember-ihbs</a></p>
 
+<p>The plugins define a <code>translate</code> hook for the ES loader:</p>
+
+<div class="highlight"><pre><code class="language-html-handlebars" data-lang="html+handlebars">import EmTC from &#39;ember-template-compiler&#39;;
+
+export var translate = function(load) <span class="err">{</span>
+  console.log(`Compiling template: $<span class="err">{</span>load.metadata.pluginArgument}`);
+  var template = EmTC.precompile(load.source, false);
+  return `import Em from &#39;ember&#39;;\nexport default Em.HTMLBars.template($<span class="err">{</span>template});`;
+};</code></pre></div>
+
+<p>In the hook, <code>ember-template-compiler</code> is used to precompile a template and to export it as a JS modile. After this plugin is installed in your app, you can import templates as following:</p>
+
+<p><code>
+import tmpl from 'templates/tmpl.hbs!';
+</code></p>
+
+<p>This will import <code>tmpl.hbs</code> from the <code>templates</code> folder and make it available in your code as <code>tmpl</code> variable.</p>
+
 <p>Thanks for reading.</p>
 
   </article>
