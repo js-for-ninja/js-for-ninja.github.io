@@ -5,8 +5,8 @@
     <description></description>
     <link>http://js-for.ninja/</link>
     <atom:link href="http://js-for.ninja/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 16 Mar 2015 23:18:06 +0100</pubDate>
-    <lastBuildDate>Mon, 16 Mar 2015 23:18:06 +0100</lastBuildDate>
+    <pubDate>Mon, 16 Mar 2015 23:42:14 +0100</pubDate>
+    <lastBuildDate>Mon, 16 Mar 2015 23:42:14 +0100</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -14,19 +14,6 @@
         <pubDate>Thu, 05 Mar 2015 23:06:00 +0100</pubDate>
         <link>http://js-for.ninja/custom-ember-dev-workflow-using-jspm.html</link>
         <guid isPermaLink="true">http://js-for.ninja/custom-ember-dev-workflow-using-jspm.html</guid>
-        
-        
-        <category>ember.js</category>
-        
-        <category>jspm</category>
-        
-      </item>
-    
-      <item>
-        <title>Adding Stripe Connect to Your Ember CLI App Using Simple Auth and Torii</title>
-        <pubDate>Thu, 05 Mar 2015 23:06:00 +0100</pubDate>
-        <link>http://js-for.ninja/adding-stripe-connect-to-your-ember-cli-app-using-simple-auth-and-torii.html</link>
-        <guid isPermaLink="true">http://js-for.ninja/adding-stripe-connect-to-your-ember-cli-app-using-simple-auth-and-torii.html</guid>
         
         
         <category>ember.js</category>
