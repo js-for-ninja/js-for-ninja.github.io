@@ -14,7 +14,7 @@ cd ../js-for-ninja.github.io/
 
 git add . --all
 
-git commit -m "Relese" -a
+git commit -m "Release" -a
 
 git push origin master
 

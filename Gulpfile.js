@@ -8,3 +8,7 @@ gulp.task('autoprefixer', function () {
         .pipe(postcss([ autoprefixer({ browsers: ['last 2 version'] }) ]))
         .pipe(gulp.dest('./_site/css/'));
 });
+
+gulp.task('build', function () {
+  // TODO move to gulp
+});
