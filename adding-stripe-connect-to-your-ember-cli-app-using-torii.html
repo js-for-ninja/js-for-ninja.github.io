@@ -76,8 +76,7 @@
 <p>I will start with an empty ember-cli app:</p>
 
 <p><code>
-ember new stripe-test
-cd stripe-test
+ember new stripe-test &amp;&amp; cd stripe-test
 </code></p>
 
 <p>The next step is to install the Torii library. It can be done using npm:</p>
@@ -103,6 +102,17 @@ ember s
       apiKey: 'ca_5r02zOg4ABMMwW1I8zE1cyn2sltmya12',
       redirectUri: 'http://localhost:4200'
     }
+  }
+};
+</code></pre>
+
+<p>UPDATE (thanks to <a href="https://twitter.com/bantic">@bantic</a>): the <code>sessionServiceName</code> tells Torii to configure the <a href="https://github.com/Vestorly/torii#session-management-in-torii">session service</a>. An  instance of the session service is injected in controllers and routes whereas plain Torii is only available on routes. Having defined the name of the session service as <code>torii</code> we override the plain Torii instance with a Torii session instance. If you want to use the plain Torii you should define some other name for the session service or don’t use the session management at all. In that case in order to make Torii available on controllers, the following initializer has to be added (e.g. in <code>app/initializers/torii.js</code>):</p>
+
+<pre><code>export default {
+  name: 'torii-in-controller',
+  after: 'torii',
+  initialize: function(container, application) {
+    application.inject('controller', 'torii', 'torii:main');
   }
 };
 </code></pre>
@@ -159,7 +169,7 @@ Stripe Authorization Token: <span class="cp">{{</span><span class="nv">authoriza
   <span class="p">}</span>
 <span class="p">});</span></code></pre></div>
 
-<p>The last piece is the torii adapter. Torii adapters are entities responsible for managing the authentication state. An adapter should contain at least the <code>open</code> method which will be called whenever users log in using one of the providers and the data returned by the provider will be passed on to the adapter’s <code>open</code> method. Create <code>app/torii-adapters/application.js</code> and define a basic adapter which just returns whatever the provider sends back:</p>
+<p>The last piece is the torii adapter. Torii adapters are entities responsible for managing the authentication state and they are needed for the <a href="https://github.com/Vestorly/torii#session-management-in-torii">session management</a>. An adapter should contain at least the <code>open</code> method which will be called whenever users log in using one of the providers and the data returned by the provider will be passed on to the adapter’s <code>open</code> method. Create <code>app/torii-adapters/application.js</code> and define a basic adapter which just returns whatever the provider sends back:</p>
 
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">Ember</span> <span class="nx">from</span> <span class="s1">&#39;ember&#39;</span><span class="p">;</span>
 
