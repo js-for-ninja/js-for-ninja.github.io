@@ -1,161 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-    
     <url>
-      <loc>http://js-for.ninja/adding-stripe-connect-to-your-ember-cli-app-using-torii.html</loc>
-      
-        <lastmod>2015-03-17T23:06:00+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
+        <loc>http://js-for.ninja/about.html</loc>
+        <lastmod>2015-03-24T20:29:33.351Z</lastmod>
+        <changefreq>weekly</changefreq>
     </url>
-    
-  
-    
     <url>
-      <loc>http://js-for.ninja/custom-ember-dev-workflow-using-jspm.html</loc>
-      
-        <lastmod>2015-03-05T23:06:00+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
+        <loc>http://js-for.ninja/adding-stripe-connect-to-your-ember-cli-app-using-torii.html</loc>
+        <lastmod>2015-03-24T20:29:33.331Z</lastmod>
+        <changefreq>weekly</changefreq>
     </url>
-    
-  
-    
     <url>
-      <loc>http://js-for.ninja/ember-js-how-to-hide-views-using-is-visible-property.html</loc>
-      
-        <lastmod>2015-02-03T20:57:13+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
+        <loc>http://js-for.ninja/custom-ember-dev-workflow-using-jspm.html</loc>
+        <lastmod>2015-03-24T20:29:33.315Z</lastmod>
+        <changefreq>weekly</changefreq>
     </url>
-    
-  
-    
     <url>
-      <loc>http://js-for.ninja/ember-js-one-case-when-bindings-do-not-work.html</loc>
-      
-        <lastmod>2015-01-11T14:38:00+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
+        <loc>http://js-for.ninja/ember-js-and-web-speech-api-example.html</loc>
+        <lastmod>2015-03-24T20:29:33.235Z</lastmod>
+        <changefreq>weekly</changefreq>
     </url>
-    
-  
-    
     <url>
-      <loc>http://js-for.ninja/my-observers-do-not-work-or-rtfm.html</loc>
-      
-        <lastmod>2014-12-14T13:34:00+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
+        <loc>http://js-for.ninja/ember-js-how-to-hide-views-using-is-visible-property.html</loc>
+        <lastmod>2015-03-24T20:29:33.295Z</lastmod>
+        <changefreq>weekly</changefreq>
     </url>
-    
-  
-    
     <url>
-      <loc>http://js-for.ninja/ember-js-and-web-speech-api-example.html</loc>
-      
-        <lastmod>2014-12-07T17:00:00+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
+        <loc>http://js-for.ninja/ember-js-one-case-when-bindings-do-not-work.html</loc>
+        <lastmod>2015-03-24T20:29:33.275Z</lastmod>
+        <changefreq>weekly</changefreq>
     </url>
-    
-  
-    
     <url>
-      <loc>http://js-for.ninja/ember-js-using-unbound-helpers.html</loc>
-      
-        <lastmod>2014-11-30T13:00:00+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
+        <loc>http://js-for.ninja/ember-js-using-unbound-helpers.html</loc>
+        <lastmod>2015-03-24T20:29:33.211Z</lastmod>
+        <changefreq>weekly</changefreq>
     </url>
-    
-  
-    
     <url>
-      <loc>http://js-for.ninja/experiments-using-image-sprites-and-img-tags-to-display-a-set-of-images.html</loc>
-      
-        <lastmod>2014-11-18T00:14:00+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
+        <loc>http://js-for.ninja/experiments-using-image-sprites-and-img-tags-to-display-a-set-of-images.html</loc>
+        <lastmod>2015-03-24T20:29:33.187Z</lastmod>
+        <changefreq>weekly</changefreq>
     </url>
-    
-  
-  
-    
     <url>
-      <loc>http://js-for.ninja/about/</loc>
-      
-        <lastmod>2015-03-23T19:50:39+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.3</priority>
-      
+        <loc>http://js-for.ninja/</loc>
+        <lastmod>2015-03-24T20:29:33.363Z</lastmod>
+        <changefreq>weekly</changefreq>
     </url>
-    
-  
-    
-  
-    
     <url>
-      <loc>http://js-for.ninja/</loc>
-      
-        <lastmod>2015-03-23T19:50:39+01:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.3</priority>
-      
+        <loc>http://js-for.ninja/my-observers-do-not-work-or-rtfm.html</loc>
+        <lastmod>2015-03-24T20:29:33.255Z</lastmod>
+        <changefreq>weekly</changefreq>
     </url>
-    
-  
-    
-  
-    
-  
 </urlset>

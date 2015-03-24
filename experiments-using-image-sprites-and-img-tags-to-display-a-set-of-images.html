@@ -1,261 +1,147 @@
-<!DOCTYPE html>
-<html>
-
-  <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Experiments: Using Image Sprites and IMG Tags to Display a Set of Images</title>
-  <meta name="description" content="The article discusses the image sprites to be used with the IMG tag for the content images. The generation of the sprites happens on the fly on the nodejs se...">
-
-  <link async rel="stylesheet" href="/css/main.css">
-
-  <link rel="canonical" href="http://js-for.ninja/experiments-using-image-sprites-and-img-tags-to-display-a-set-of-images.html">
-  <link rel="alternate" type="application/atom+xml" title="JavaScript for Ninja" href="http://js-for.ninja/feed.xml" />
-  <meta name=viewport content="width=device-width, initial-scale=1">
-
-</head>
-
-  <body>
-
-    <a class="gh-ribbon" href="https://github.com/js-for-ninja/js-for-ninja.github.io.source"><img style="z-index: 100; position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
-
-    <header class="site-header">
-
-  <div class="wrapper">
-
-    <a class="site-title" href="/">
-      <img src="/img/small.png" alt="">
-    </a>
-
-    <nav class="site-nav">
-      <a href="#" class="menu-icon">
-        <svg viewBox="0 0 18 15">
-          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
-          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
-          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
-        </svg>
-      </a>
-
-      <div class="trigger">
-        <a class="page-link" href="http://feeds.feedburner.com/JsForNinja">RSS</a>
-        
-          
-          <a class="page-link" href="/about/">About</a>
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      </div>
-    </nav>
-
-  </div>
-
-</header>
-
-
-    <div class="page-content">
-      <div class="wrapper">
-        <div itemscope itemtype="http://schema.org/Article" class="post">
-
-  <header class="post-header">
-    <h1 itemprop="name" class="post-title">Experiments: Using Image Sprites and IMG Tags to Display a Set of Images</h1>
-    <p class="post-meta"><span itemprop="datePublished" content="2014-11-18">Nov 18, 2014</span> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Oleksii Rudenko</span></span></p>
-  </header>
-
-  <article class="post-content">
-    <p>Dear Readers,</p>
-
-<p>as you may know, the CSS Sprite technique helps to reduce the number of requests to get images from the server. This is achieved by combining all images that are needed to style a web page (e.g. icons, backgrounds) into one big image. Then, by specifying coordinates, the width and the height of a part of the image, browsers can render pieces of this big image in appropriate places of a web page. This is how it looks like in the code:</p>
-
-<p><a class="jsbin-embed" href="http://jsbin.com/kifawe/3/embed?css,output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
-
-<p>In this blog post, I will not use the CSS background to display sprites as it is usually done to style Web pages. Instead, I will try to use regular IMG tags and sprites to render images which are part of the content. For example, given a list of items (e.g. products) - does it make sense to combine all product pics into a single sprite image and load all pics at once? We will see in the end.</p>
-
-<p>The solution is not purely a client side one. It also requires some server side coding. The client side will be implemented using Ember.js and the server will in node.js using koa.js framework.</p>
-
-<h2 id="implementing-the-server">Implementing The Server</h2>
-
-<p>The server is very simple. It uses the great koa.js framework. First, let’s set up an example without using any sprites. Like one would normally do when displaying a collection of items.</p>
-
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">koa</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;koa&#39;</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">koa</span><span class="p">();</span>
-    <span class="kd">var</span> <span class="nx">items</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">{</span>
-      <span class="nx">src</span> <span class="o">:</span> <span class="s1">&#39;../public_html/imgs/1.jpg&#39;</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-      <span class="nx">src</span> <span class="o">:</span> <span class="s1">&#39;../public_html/imgs/2.jpg&#39;</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-      <span class="nx">src</span> <span class="o">:</span> <span class="s1">&#39;../public_html/imgs/3.jpg&#39;</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-      <span class="nx">src</span> <span class="o">:</span> <span class="s1">&#39;../public_html/imgs/4.jpg&#39;</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-      <span class="nx">src</span> <span class="o">:</span> <span class="s1">&#39;../public_html/imgs/5.jpg&#39;</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-      <span class="nx">src</span> <span class="o">:</span> <span class="s1">&#39;../public_html/imgs/6.jpg&#39;</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-      <span class="nx">src</span> <span class="o">:</span> <span class="s1">&#39;../public_html/imgs/7.jpg&#39;</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-      <span class="nx">src</span> <span class="o">:</span> <span class="s1">&#39;../public_html/imgs/8.jpg&#39;</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
-      <span class="nx">src</span> <span class="o">:</span> <span class="s1">&#39;../public_html/imgs/9.jpg&#39;</span>
-        <span class="p">},</span>
-    <span class="p">];</span>
-    <span class="kd">function</span> <span class="nx">getImgs</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">items</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">item</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">item</span><span class="p">.</span><span class="nx">src</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;../public_html/&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span> <span class="c1">// some processing to provide meaningful URLs to the client</span>
-        <span class="p">});</span>
-        <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span> <span class="o">*</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span> <span class="c1">// to allow CORs requests</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">body</span> <span class="o">=</span> <span class="nx">getImgs</span><span class="p">();</span>
-    <span class="p">});</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Listening&quot;</span><span class="p">);</span>
-    <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span></code></pre></div>
-
-<p>Implementing The Client</p>
-
-<p>I will use the Ember’s Starter Kit package and put some basic templates in it:</p>
-
-<p><a class="jsbin-embed" href="http://emberjs.jsbin.com/birip/latest/embed?html,js,output">Ember Starter Kit</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
-
-<h2 id="adding-sprites">Adding sprites</h2>
-
-<p>Adding sprites would require several steps:
- * on the server: generate sprites for images in the items array
- * on the client: render the img tag using the sprite image</p>
-
-<p>First, I update the package.json file and add the sprititize module as a dependency. Sprititize is a simple module I’ve written, that takes a collection of items, finds their images and builds one big sprite image using the.</p>
-
-<p>Server:</p>
-
-<pre><code>{
-  "name": "sprites",
-  "description": "sprites",
-  "version": "0.0.1",
-  "dependencies": {
-      "koa" : "*",
-      "sprititize": "OrKoN/sprititize"
-  }
-}
-</code></pre>
-
-<p>server.js</p>
-
-<pre><code>var koa = require('koa');
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Experiments: Using Image Sprites and IMG Tags to Display a Set of Images</title><meta name="description" content="The article discusses the image sprites to be used with the IMG tag for the content images. The generation of the sprites happens on the fly on the nodejs server"><link async rel="stylesheet" href="/styles/main.css"><link rel="canonical" href="/experiments-using-image-sprites-and-img-tags-to-display-a-set-of-images.html"><link rel="alternate" type="application/atom+xml" title="JavaScript for Ninja" href=""><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" title="Default" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/monokai_sublime.min.css"><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script><script async src="//assets.codepen.io/assets/embed/ei.js"></script></head><body><a class="gh-ribbon" href="https://github.com/js-for-ninja/js-for-ninja.github.io.source"><img style="z-index: 100; position: absolute; top: 0; right: 0; border: 0" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a><header class="site-header"><div class="wrapper"><a class="site-title" href="/"><img src="/img/small.png" alt=""></a><nav class="site-nav"><a href="#" class="menu-icon"><svg viewbox="0 0 18 15"><path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"><path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"><path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"></svg></a><div class="trigger"><a class="page-link" href="http://feeds.feedburner.com/JsForNinja">RSS</a> <a class="page-link" href="/about.html">About</a></div></nav></div></header><div class="page-content"><div class="wrapper"><div itemscope itemtype="http://schema.org/Article" class="post"><header class="post-header"><h1 itemprop="name" class="post-title">Experiments: Using Image Sprites and IMG Tags to Display a Set of Images</h1><p class="post-meta"><span itemprop="datePublished" content="Tue Nov 18 2014 00:14:00 GMT+0100 (CET)">Nov 18, 2014</span> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Oleksii Rudenko</span></span></p></header><article class="post-content"><p>Dear Readers,</p><p>as you may know, the CSS Sprite technique helps to reduce the number of requests to get images from the server. This is achieved by combining all images that are needed to style a web page (e.g. icons, backgrounds) into one big image. Then, by specifying coordinates, the width and the height of a part of the image, browsers can render pieces of this big image in appropriate places of a web page. This is how it looks like in the code:</p><p data-height="268" data-theme-id="0" data-slug-hash="jEXJQM" data-default-tab="result" data-user="OrKoN" class="codepen">See the Pen <a href="http://codepen.io/OrKoN/pen/jEXJQM/">jEXJQM</a> by Oleksii Rudenko (<a href="http://codepen.io/OrKoN">@OrKoN</a>) on <a href="http://codepen.io">CodePen</a>.</p><p>In this blog post, I will not use the CSS background to display sprites as it is usually done to style Web pages. Instead, I will try to use regular IMG tags and sprites to render images which are part of the content. For example, given a list of items (e.g. products) - does it make sense to combine all product pics into a single sprite image and load all pics at once? We will see in the end.</p><p>The solution is not purely a client side one. It also requires some server side coding. The client side will be implemented using Ember.js and the server will in node.js using koa.js framework.</p><h2 id="implementing-the-server">Implementing The Server</h2><p>The server is very simple. It uses the great koa.js framework. First, let&#39;s set up an example without using any sprites. Like one would normally do when displaying a collection of items.</p><pre><code class="lang-js">var koa = require(&#39;koa&#39;);
 var app = koa();
-var makeSprites = require('sprititize');
 var items = [
     {
-  src : '../public_html/imgs/1.jpg'
+  src : &#39;../public_html/imgs/1.jpg&#39;
     },
     {
-  src : '../public_html/imgs/2.jpg'
+  src : &#39;../public_html/imgs/2.jpg&#39;
     },
     {
-  src : '../public_html/imgs/3.jpg'
+  src : &#39;../public_html/imgs/3.jpg&#39;
     },
     {
-  src : '../public_html/imgs/4.jpg'
+  src : &#39;../public_html/imgs/4.jpg&#39;
     },
     {
-  src : '../public_html/imgs/5.jpg'
+  src : &#39;../public_html/imgs/5.jpg&#39;
     },
     {
-  src : '../public_html/imgs/6.jpg'
+  src : &#39;../public_html/imgs/6.jpg&#39;
     },
     {
-  src : '../public_html/imgs/7.jpg'
+  src : &#39;../public_html/imgs/7.jpg&#39;
     },
     {
-  src : '../public_html/imgs/8.jpg'
+  src : &#39;../public_html/imgs/8.jpg&#39;
     },
     {
-  src : '../public_html/imgs/9.jpg'
+  src : &#39;../public_html/imgs/9.jpg&#39;
+    },
+];
+function getImgs() {
+    items.forEach(function (item) {
+        item.src = item.src.replace(&#39;../public_html/&#39;, &#39;&#39;); // some processing to provide meaningful URLs to the client
+    });
+    return result;
+}
+app.use(function * () {
+    this.set(&#39;Access-Control-Allow-Origin&#39;, &#39;*&#39;); // to allow CORs requests
+    this.body = getImgs();
+});
+console.log(&quot;Listening&quot;);
+app.listen(3000);
+</code></pre><p>Implementing The Client</p><p>I will use the Ember&#39;s Starter Kit package and put some basic templates in it:</p><p data-height="383" data-theme-id="0" data-slug-hash="VYqRVq" data-default-tab="result" data-user="OrKoN" class="codepen">See the Pen <a href="http://codepen.io/OrKoN/pen/VYqRVq/">VYqRVq</a> by Oleksii Rudenko (<a href="http://codepen.io/OrKoN">@OrKoN</a>) on <a href="http://codepen.io">CodePen</a>.</p><h2 id="adding-sprites">Adding sprites</h2><p>Adding sprites would require several steps:</p><ul><li>on the server: generate sprites for images in the items array</li><li>on the client: render the img tag using the sprite image</li></ul><p>First, I update the package.json file and add the sprititize module as a dependency. Sprititize is a simple module I&#39;ve written, that takes a collection of items, finds their images and builds one big sprite image using the.</p><p>Server:</p><pre><code class="lang-json">{
+  &quot;name&quot;: &quot;sprites&quot;,
+  &quot;description&quot;: &quot;sprites&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;dependencies&quot;: {
+      &quot;koa&quot; : &quot;*&quot;,
+      &quot;sprititize&quot;: &quot;OrKoN/sprititize&quot;
+  }
+}
+</code></pre><p>server.js</p><pre><code class="lang-js">var koa = require(&#39;koa&#39;);
+var app = koa();
+var makeSprites = require(&#39;sprititize&#39;);
+var items = [
+    {
+  src : &#39;../public_html/imgs/1.jpg&#39;
+    },
+    {
+  src : &#39;../public_html/imgs/2.jpg&#39;
+    },
+    {
+  src : &#39;../public_html/imgs/3.jpg&#39;
+    },
+    {
+  src : &#39;../public_html/imgs/4.jpg&#39;
+    },
+    {
+  src : &#39;../public_html/imgs/5.jpg&#39;
+    },
+    {
+  src : &#39;../public_html/imgs/6.jpg&#39;
+    },
+    {
+  src : &#39;../public_html/imgs/7.jpg&#39;
+    },
+    {
+  src : &#39;../public_html/imgs/8.jpg&#39;
+    },
+    {
+  src : &#39;../public_html/imgs/9.jpg&#39;
     },
 ];
 function *getSpriteImgs() {
     yield makeSprites(items, { // making use of the sprititize module
-        output: '../public_html/imgs/sprite.jpg'
+        output: &#39;../public_html/imgs/sprite.jpg&#39;
     });
     var result = [];
     for (var i = 1; i &lt;= 9; i++) {
         result.push({
-            "src": "imgs/sprite.jpg",
-             "id" : "sprite" + i
+            &quot;src&quot;: &quot;imgs/sprite.jpg&quot;,
+             &quot;id&quot; : &quot;sprite&quot; + i
         });
     }
     return result;
 }
 app.use(function * () {
-    this.set('Access-Control-Allow-Origin', '*');
+    this.set(&#39;Access-Control-Allow-Origin&#39;, &#39;*&#39;);
     this.body = yield getSpriteImgs();
 });
-console.log("Listening");
+console.log(&quot;Listening&quot;);
 app.listen(3000);
-</code></pre>
-
-<p>Client</p>
-
-<pre><code>&lt;!DOCTYPE html&gt;
+</code></pre><p>Client</p><pre><code class="lang-html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
     &lt;head&gt;
-        &lt;meta charset="utf-8"&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
         &lt;title&gt;Ember Starter Kit&lt;/title&gt;
-        &lt;link rel="stylesheet" href="css/normalize.css"&gt;
-        &lt;link rel="stylesheet" href="css/style.css"&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;css/normalize.css&quot;&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;css/style.css&quot;&gt;
     &lt;/head&gt;
     &lt;body&gt;
-        &lt;script type="text/x-handlebars"&gt;
+        &lt;script type=&quot;text/x-handlebars&quot;&gt;
             &lt;h2&gt;Welcome to Sprites Demo&lt;/h2&gt;
-            
+            {{outlet}}
         &lt;/script&gt;
-        &lt;script type="text/x-handlebars" id="components/sprite-img"&gt;
-            &lt;div &gt;
-                &lt;img &gt;
+        &lt;script type=&quot;text/x-handlebars&quot; id=&quot;components/sprite-img&quot;&gt;
+            &lt;div {{bind-attr id=item.id}}&gt;
+                &lt;img {{bind-attr src=item.src}}&gt;
             &lt;/div&gt;
         &lt;/script&gt;
-        &lt;script type="text/x-handlebars" id="index"&gt;
+        &lt;script type=&quot;text/x-handlebars&quot; id=&quot;index&quot;&gt;
             &lt;ul&gt;
-            
+            {{#each item in model}}
             &lt;li&gt;
-                
+                {{sprite-img item=item}}
             &lt;/li&gt;
-            
+            {{/each}}
             &lt;/ul&gt;
         &lt;/script&gt;
-        &lt;script src="js/libs/jquery-1.10.2.js"&gt;&lt;/script&gt;
-        &lt;script src="js/libs/handlebars-1.1.2.js"&gt;&lt;/script&gt;
-        &lt;script src="js/libs/ember-1.7.0.js"&gt;&lt;/script&gt;
-        &lt;script src="js/app.js"&gt;&lt;/script&gt;
+        &lt;script src=&quot;js/libs/jquery-1.10.2.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;js/libs/handlebars-1.1.2.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;js/libs/ember-1.7.0.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;js/app.js&quot;&gt;&lt;/script&gt;
     &lt;/body&gt;
 &lt;/html&gt;
-</code></pre>
-
-<p>And some yet important styles:</p>
-
-<pre><code>div[id^='sprite'] {
+</code></pre><p>And some yet important styles:</p><pre><code class="lang-css">div[id^=&#39;sprite&#39;] {
     display: block;
     height: 256px;
     width: 256px;
     overflow: hidden;
     position: relative;
 }
-div[id^='sprite'] img {
+div[id^=&#39;sprite&#39;] img {
     position: absolute;
 }
 #sprite1 img {
@@ -285,165 +171,18 @@ div[id^='sprite'] img {
 #sprite9 img {
     top: -2048px;
 }
-</code></pre>
+</code></pre><p data-height="268" data-theme-id="0" data-slug-hash="embXbE" data-default-tab="result" data-user="OrKoN" class="codepen">See the Pen <a href="http://codepen.io/OrKoN/pen/embXbE/">embXbE</a> by Oleksii Rudenko (<a href="http://codepen.io/OrKoN">@OrKoN</a>) on <a href="http://codepen.io">CodePen</a>.</p><h2 id="performance">Performance</h2><p>According to my not professional and not reproducible benchmarks, the solution using sprites was 1.5-1.8 times faster when tested locally. So performance-wise it may be beneficial escpecially if there are lots of images to be shown on a page and they are part of the content. Nevertheless, this approach has several drawbacks.</p><h2 id="drawbacks">Drawbacks</h2><ul><li>the resulting HTML is not semantically correct - i.e., when some one would try to parse your website, it will get the same image for all items and the information about which part of the image should be shown for a particular item most likely will be lost</li><li>the approach may not work well with responsive images supported by HTML 5</li><li>the approach may be slower on slow network connections [never tested]</li><li>I would not recommend to use this approach in production unless you&#39;re sure it really helps</li></ul><h2 id="further-improvments">Further Improvments</h2><p>Caching may help to reduce the amount of cpu resources required to generate a sprite. For example, if images shown on a page are always the same (e.g. 10 the most popular products) it makes sense to cache the sprite image so there is no overheadexcept for the first request. If each item associated with an image or the image itself has an unique ID, this ID may be used to define the spire ID. For example, products #3, #4, #5, #6 would result in a sprite 3_4_5_6.jpg. Thus, one can easily check whether there is a sprite image for a given set of items already.</p><p>The CSS is awful and it&#39;s used only to demonstrate the approach. A more compact and general CSS may be defined. Also the coordinates of the images with the sprite may be provided by the server as it knows them. Thus, there will be no need to define them in the CSS beforehand.</p><p>Have fun!</p></article><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'jsforninja'; // required: replace example with your forum shortname
 
-<p><a class="jsbin-embed" href="http://emberjs.jsbin.com/toroji/latest/embed?output">Ember Starter Kit</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
-
-<h2 id="performance">Performance</h2>
-
-<p>According to my not professional and not reproducible benchmarks, the solution using sprites was 1.5-1.8 times faster when tested locally. So performance-wise it may be beneficial escpecially if there are lots of images to be shown on a page and they are part of the content. Nevertheless, this approach has several drawbacks.</p>
-
-<h2 id="drawbacks">Drawbacks</h2>
-<ul>
-  <li>the resulting HTML is not semantically correct - i.e., when some one would try to parse your website, it will get the same image for all items and the information about which part of the image should be shown for a particular item most likely will be lost</li>
-  <li>the approach may not work well with responsive images supported by HTML 5</li>
-  <li>the approach may be slower on slow network connections [never tested]</li>
-  <li>I would not recommend to use this approach in production unless you’re sure it really helps</li>
-</ul>
-
-<h2 id="further-improvments">Further Improvments</h2>
-
-<p>Caching may help to reduce the amount of cpu resources required to generate a sprite. For example, if images shown on a page are always the same (e.g. 10 the most popular products) it makes sense to cache the sprite image so there is no overheadexcept for the first request. If each item associated with an image or the image itself has an unique ID, this ID may be used to define the spire ID. For example, products #3, #4, #5, #6 would result in a sprite 3_4_5_6.jpg. Thus, one can easily check whether there is a sprite image for a given set of items already.</p>
-
-<p>The CSS is awful and it’s used only to demonstrate the approach. A more compact and general CSS may be defined. Also the coordinates of the images with the sprite may be provided by the server as it knows them. Thus, there will be no need to define them in the CSS beforehand.</p>
-
-<p>Have fun!</p>
-
-
-  </article>
-
-  
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'jsforninja'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  
-
-<meta itemprop="url" content="/experiments-using-image-sprites-and-img-tags-to-display-a-set-of-images.html">
-</div>
-
-      </div>
-    </div>
-
-    <footer class="site-footer">
-
-  <div class="wrapper">
-
-    <h2 class="footer-heading">JavaScript for Ninja</h2>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col  footer-col-1">
-        <ul class="contact-list">
-          <li>JavaScript for Ninja</li>
-          <li><a href="mailto:contact-us@js-for.ninja">contact-us@js-for.ninja</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col  footer-col-2">
-        <h6 class="social-media-list-header"> Subscribe via </h6>
-        <ul class="social-media-list">
-          
-          <li>
-            <a href="https://github.com/js-for-ninja">
-              <span class="icon  icon--github">
-                <svg viewBox="0 0 16 16">
-                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
-                </svg>
-              </span>
-
-              <span class="username">js-for-ninja</span>
-            </a>
-          </li>
-          
-
-          
-          <li>
-            <a href="https://twitter.com/js_for_ninja">
-              <span class="icon  icon--twitter">
-                <svg viewBox="0 0 16 16">
-                  <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
-                  c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
-                </svg>
-              </span>
-
-              <span class="username">js_for_ninja</span>
-            </a>
-          </li>
-          
-        </ul>
-      </div>
-
-      <div class="footer-col  footer-col-3">
-        <p class="text">
-          JavaScript for Ninja(<a href="/about#name">?</a>) is a blog about Web Development and JavaScript.
-        </p>
-      </div>
-    </div>
-
-  </div>
-
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-57010783-1', 'auto');
-    ga('send', 'pageview');
-
-  </script>
-  
-   <script src="https://code.jquery.com/jquery-2.1.3.min.js" type="text/javascript" > </script>
-
-  <script type="text/javascript">
-
-  // Returns a function, that, as long as it continues to be invoked, will not
-  // be triggered. The function will be called after it stops being called for
-  // N milliseconds. If `immediate` is passed, trigger the function on the
-  // leading edge, instead of the trailing.
-  function debounce(func, wait, immediate) {
-    var timeout;
-    return function() {
-      var context = this, args = arguments;
-      var later = function() {
-        timeout = null;
-        if (!immediate) func.apply(context, args);
-      };
-      var callNow = immediate && !timeout;
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-      if (callNow) func.apply(context, args);
-    };
-  };
-
-  $(function () {
-
-    var update = function(k){
-      $('.timeline-block').each(function(){
-        if( $(this).offset().top <= $(window).scrollTop()+$(window).height()*k && $(this).find('.timeline-img').hasClass('is-hidden') ) {
-          $(this).find('.timeline-img, .timeline-content').removeClass('is-hidden').addClass('bounce-in');
-        }
-      });
-    };
-    update(1);
-    $(window).on('scroll', debounce(function () { update(0.75); }, 100));
-    $(window).on('resize', debounce(function () { update(1); }, 100));
-  })
-
-  </script>
-
-</footer>
-
-
-  </body>
-
-</html>
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><meta itemprop="url" content="/experiments-using-image-sprites-and-img-tags-to-display-a-set-of-images.html"></div></div></div><footer class="site-footer"><div class="wrapper"><h2 class="footer-heading">JavaScript for Ninja</h2><div class="footer-col-wrapper"><div class="footer-col footer-col-1"><ul class="contact-list"><li>JavaScript for Ninja</li><li><a href="mailto:contact-us@js-for.ninja">contact-us@js-for.ninja</a></li></ul></div><div class="footer-col footer-col-2"><h6 class="social-media-list-header">Subscribe via</h6><ul class="social-media-list"><li><a href="https://github.com/js-for-ninja"><span class="icon icon--github"><svg viewbox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"></svg></span> <span class="username">js-for-ninja</span></a></li><li><a href="https://twitter.com/js_for_ninja"><span class="icon icon--twitter"><svg viewbox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+                  c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"></svg></span> <span class="username">js_for_ninja</span></a></li></ul></div><div class="footer-col footer-col-3"><p class="text">JavaScript for Ninja(<a href="/about.html#name">?</a>) is a blog about Web Development and JavaScript.</p></div></div></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-57010783-1', 'auto');
+      ga('send', 'pageview');</script><script src="https://code.jquery.com/jquery-2.1.3.min.js" type="text/javascript"></script><script src="/js/app.js" type="text/javascript"></script></footer></body></html>
