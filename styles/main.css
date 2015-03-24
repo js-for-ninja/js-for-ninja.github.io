@@ -38,6 +38,15 @@ img {
   max-width: 100%;
   vertical-align: middle; }
 
+.post-content img {
+  border: rgba(0, 0, 0, 0.4) 1px solid;
+  border-bottom: rgba(0, 0, 0, 0.3) 3px solid;
+  border-right: rgba(0, 0, 0, 0.3) 3px solid;
+  border-radius: 5px;
+  margin: 0 auto;
+  width: 90%;
+  display: block; }
+
 /**
  * Figures
  */
