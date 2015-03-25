@@ -145,6 +145,11 @@ code {
 h6.social-media-list-header {
   margin-bottom: 0; }
 
+.more-posts {
+  margin-bottom: 30px; }
+  .more-posts h1, .more-posts h2, .more-posts h3, .more-posts h4, .more-posts h5, .more-posts h6 {
+    margin-top: 30px; }
+
 /**
  * Site header
  */
