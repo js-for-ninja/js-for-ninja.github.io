@@ -150,6 +150,10 @@ h6.social-media-list-header {
   .more-posts h1, .more-posts h2, .more-posts h3, .more-posts h4, .more-posts h5, .more-posts h6 {
     margin-top: 30px; }
 
+.post-content img {
+  cursor: -webkit-zoom-in;
+  cursor: zoom-in; }
+
 /**
  * Site header
  */
