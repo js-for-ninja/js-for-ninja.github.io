@@ -5,14 +5,14 @@
     <description></description>
     <link>http://js-for.ninja/</link>
     <atom:link href="http://js-for.ninja/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 01 Apr 2015 21:10:44 GMT</pubDate>
-    <lastBuildDate>Wed, 01 Apr 2015 21:10:44 GMT</lastBuildDate>
+    <pubDate>Wed, 01 Apr 2015 21:13:17 GMT</pubDate>
+    <lastBuildDate>Wed, 01 Apr 2015 21:13:17 GMT</lastBuildDate>
     <generator>Any</generator>
         <item>
           <title>Using HTML 5 Application Cache for Single Page Applications</title>
           <pubDate>Wed, 01 Apr 2015 20:42:00 GMT</pubDate>
-          <link>http://js-for.ninja/using-html5-application-cache-in-an-ember-app.html</link>
-          <guid isPermaLink="true">http://js-for.ninja/using-html5-application-cache-in-an-ember-app.html</guid>
+          <link>http://js-for.ninja/using-html5-application-cache-for-single-page-applications.html</link>
+          <guid isPermaLink="true">http://js-for.ninja/using-html5-application-cache-for-single-page-applications.html</guid>
 <category>ember.js</category>
 <category>application-cache</category>
 </item>
