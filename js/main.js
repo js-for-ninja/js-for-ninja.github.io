@@ -6328,6 +6328,7 @@ System.register("src/js/lib/timeline", ["github:components/jquery@2.1.3"], funct
 
       $(function () {
         var update = function update(k) {
+          console.log("called");
           $(".vclTimelineBlock").each(function () {
             if ($(this).offset().top <= $(window).scrollTop() + $(window).height() * k && $(this).find(".vclTimelineImage").hasClass("vclVisibilityHidden")) {
               $(this).find(".vclTimelineImage, .vclTimelineContent").removeClass("vclVisibilityHidden").addClass("bounce-in");
@@ -6336,11 +6337,11 @@ System.register("src/js/lib/timeline", ["github:components/jquery@2.1.3"], funct
         };
         update(1);
         $(window).on("scroll", debounce(function () {
-          return update(0.75);
-        }, 100));
+          return update(0.83);
+        }, 70));
         $(window).on("resize", debounce(function () {
           return update(1);
-        }, 100));
+        }, 70));
       });
     }
   };
