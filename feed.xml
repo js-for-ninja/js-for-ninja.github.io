@@ -5,9 +5,17 @@
     <description></description>
     <link>http://js-for.ninja/</link>
     <atom:link href="http://js-for.ninja/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 02 Apr 2015 20:44:12 GMT</pubDate>
-    <lastBuildDate>Thu, 02 Apr 2015 20:44:12 GMT</lastBuildDate>
+    <pubDate>Sun, 12 Apr 2015 10:40:14 GMT</pubDate>
+    <lastBuildDate>Sun, 12 Apr 2015 10:40:14 GMT</lastBuildDate>
     <generator>Any</generator>
+        <item>
+          <title>A Simple Way to Manage Local Node Modules Using NPM Link</title>
+          <pubDate>Sun, 12 Apr 2015 12:00:00 GMT</pubDate>
+          <link>http://js-for.ninja/simple-way-to-manage-local-node-module-using-npm-link.html</link>
+          <guid isPermaLink="true">http://js-for.ninja/simple-way-to-manage-local-node-module-using-npm-link.html</guid>
+<category>node</category>
+<category>npm</category>
+</item>
         <item>
           <title>Using HTML 5 Application Cache for Single Page Applications</title>
           <pubDate>Wed, 01 Apr 2015 20:42:00 GMT</pubDate>
