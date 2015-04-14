@@ -2,62 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>http://js-for.ninja/about.html</loc>
-        <lastmod>2015-04-12T10:40:13.173Z</lastmod>
+        <lastmod>2015-04-14T18:42:39.336Z</lastmod>
         <changefreq>weekly</changefreq>
     </url>
     <url>
         <loc>http://js-for.ninja/adding-stripe-connect-to-your-ember-cli-app-using-torii.html</loc>
-        <lastmod>2015-04-12T10:40:13.117Z</lastmod>
+        <lastmod>2015-04-14T18:42:39.280Z</lastmod>
         <changefreq>weekly</changefreq>
     </url>
     <url>
         <loc>http://js-for.ninja/custom-ember-dev-workflow-using-jspm.html</loc>
-        <lastmod>2015-04-12T10:40:13.093Z</lastmod>
+        <lastmod>2015-04-14T18:42:39.256Z</lastmod>
         <changefreq>weekly</changefreq>
     </url>
     <url>
         <loc>http://js-for.ninja/ember-js-and-web-speech-api-example.html</loc>
-        <lastmod>2015-04-12T10:40:13.005Z</lastmod>
+        <lastmod>2015-04-14T18:42:39.164Z</lastmod>
         <changefreq>weekly</changefreq>
     </url>
     <url>
         <loc>http://js-for.ninja/ember-js-how-to-hide-views-using-is-visible-property.html</loc>
-        <lastmod>2015-04-12T10:40:13.073Z</lastmod>
+        <lastmod>2015-04-14T18:42:39.236Z</lastmod>
         <changefreq>weekly</changefreq>
     </url>
     <url>
         <loc>http://js-for.ninja/ember-js-one-case-when-bindings-do-not-work.html</loc>
-        <lastmod>2015-04-12T10:40:13.049Z</lastmod>
+        <lastmod>2015-04-14T18:42:39.204Z</lastmod>
         <changefreq>weekly</changefreq>
     </url>
     <url>
         <loc>http://js-for.ninja/ember-js-using-unbound-helpers.html</loc>
-        <lastmod>2015-04-12T10:40:12.981Z</lastmod>
+        <lastmod>2015-04-14T18:42:39.136Z</lastmod>
         <changefreq>weekly</changefreq>
     </url>
     <url>
         <loc>http://js-for.ninja/experiments-using-image-sprites-and-img-tags-to-display-a-set-of-images.html</loc>
-        <lastmod>2015-04-12T10:40:12.949Z</lastmod>
+        <lastmod>2015-04-14T18:42:39.096Z</lastmod>
         <changefreq>weekly</changefreq>
     </url>
     <url>
         <loc>http://js-for.ninja/</loc>
-        <lastmod>2015-04-12T10:40:13.185Z</lastmod>
+        <lastmod>2015-04-14T18:42:39.352Z</lastmod>
         <changefreq>weekly</changefreq>
     </url>
     <url>
         <loc>http://js-for.ninja/my-observers-do-not-work-or-rtfm.html</loc>
-        <lastmod>2015-04-12T10:40:13.025Z</lastmod>
+        <lastmod>2015-04-14T18:42:39.184Z</lastmod>
         <changefreq>weekly</changefreq>
     </url>
     <url>
         <loc>http://js-for.ninja/simple-way-to-manage-local-node-module-using-npm-link.html</loc>
-        <lastmod>2015-04-12T10:40:13.149Z</lastmod>
+        <lastmod>2015-04-14T18:42:39.312Z</lastmod>
         <changefreq>weekly</changefreq>
     </url>
     <url>
         <loc>http://js-for.ninja/using-html5-application-cache-for-single-page-applications.html</loc>
-        <lastmod>2015-04-12T10:40:13.137Z</lastmod>
+        <lastmod>2015-04-14T18:42:39.300Z</lastmod>
         <changefreq>weekly</changefreq>
     </url>
 </urlset>
