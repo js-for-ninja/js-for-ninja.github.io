@@ -5,9 +5,27 @@
     <description></description>
     <link>http://js-for.ninja/</link>
     <atom:link href="http://js-for.ninja/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 14 Apr 2015 18:42:40 GMT</pubDate>
-    <lastBuildDate>Tue, 14 Apr 2015 18:42:40 GMT</lastBuildDate>
+    <pubDate>Tue, 05 May 2015 16:35:23 GMT</pubDate>
+    <lastBuildDate>Tue, 05 May 2015 16:35:23 GMT</lastBuildDate>
     <generator>Any</generator>
+        <item>
+          <title>How to Use SystemJS Hooks for Building a Production Version of Your App</title>
+          <pubDate>Tue, 05 May 2015 17:55:00 GMT</pubDate>
+          <link>http://js-for.ninja/how-to-use-systemjs-hooks-during-the-build-buildsfx-processes.html</link>
+          <guid isPermaLink="true">http://js-for.ninja/how-to-use-systemjs-hooks-during-the-build-buildsfx-processes.html</guid>
+<category>jspm</category>
+<category>ember-cli</category>
+<category>systemjs</category>
+</item>
+        <item>
+          <title>Notes About Differences in Plugin Micro Syntax Between Various ES6 Module Loaders</title>
+          <pubDate>Tue, 05 May 2015 17:55:00 GMT</pubDate>
+          <link>http://js-for.ninja/differences-in-plugin-micro-syntax-between-various-es6-loaders.html</link>
+          <guid isPermaLink="true">http://js-for.ninja/differences-in-plugin-micro-syntax-between-various-es6-loaders.html</guid>
+<category>jspm</category>
+<category>ember-cli</category>
+<category>webpack</category>
+</item>
         <item>
           <title>A Simple Way to Manage Local Node Modules Using NPM Link</title>
           <pubDate>Sun, 12 Apr 2015 12:00:00 GMT</pubDate>
@@ -70,7 +88,7 @@
 <category>web-speech-api</category>
 </item>
         <item>
-          <title>Ember.JS: Using The Unbound Helper</title>
+          <title>Ember.JS: Using the Unbound Helper</title>
           <pubDate>Sun, 30 Nov 2014 12:00:00 GMT</pubDate>
           <link>http://js-for.ninja/ember-js-using-unbound-helpers.html</link>
           <guid isPermaLink="true">http://js-for.ninja/ember-js-using-unbound-helpers.html</guid>

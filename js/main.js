@@ -6292,7 +6292,7 @@ System.register("github:components/jquery@2.1.3", ["github:components/jquery@2.1
   }).call(this, __require('github:components/jquery@2.1.3/jquery'));
 });
 })();
-System.register("src/js/lib/timeline", ["github:components/jquery@2.1.3"], function (_export) {
+System.register('src/js/lib/timeline', ['github:components/jquery@2.1.3'], function (_export) {
   var $;
 
   // Returns a function, that, as long as it continues to be invoked, will not
@@ -6321,55 +6321,55 @@ System.register("src/js/lib/timeline", ["github:components/jquery@2.1.3"], funct
 
   return {
     setters: [function (_githubComponentsJquery213) {
-      $ = _githubComponentsJquery213["default"];
+      $ = _githubComponentsJquery213['default'];
     }],
     execute: function () {
-      "use strict";
+      'use strict';
 
       $(function () {
         var update = function update(k) {
-          $(".vclTimelineBlock").each(function () {
-            if ($(this).offset().top <= $(window).scrollTop() + $(window).height() * k && $(this).find(".vclTimelineImage").hasClass("vclVisibilityHidden")) {
-              $(this).find(".vclTimelineImage, .vclTimelineContent").removeClass("vclVisibilityHidden").addClass("bounce-in");
+          $('.vclTimelineBlock').each(function () {
+            if ($(this).offset().top <= $(window).scrollTop() + $(window).height() * k && $(this).find('.vclTimelineImage').hasClass('vclVisibilityHidden')) {
+              $(this).find('.vclTimelineImage, .vclTimelineContent').removeClass('vclVisibilityHidden').addClass('bounce-in');
             }
           });
         };
         update(1);
-        $(window).on("scroll", debounce(function () {
+        $(window).on('scroll', debounce(function () {
           return update(0.83);
         }, 70));
-        $(window).on("resize", debounce(function () {
+        $(window).on('resize', debounce(function () {
           return update(1);
         }, 70));
       });
     }
   };
 });
-System.register("src/js/lib/image-zoom", ["github:components/jquery@2.1.3"], function (_export) {
+System.register('src/js/lib/image-zoom', ['github:components/jquery@2.1.3'], function (_export) {
   var $;
   return {
     setters: [function (_githubComponentsJquery213) {
-      $ = _githubComponentsJquery213["default"];
+      $ = _githubComponentsJquery213['default'];
     }],
     execute: function () {
-      "use strict";
+      'use strict';
 
       $(function () {
-        $(".vclPostContent img").click(function (e) {
-          return window.open($(e.target).attr("src"), "_blank");
+        $('.vclPostContent img').click(function (e) {
+          return window.open($(e.target).attr('src'), '_blank');
         });
       });
     }
   };
 });
-System.register("src/js/main", ["github:components/jquery@2.1.3", "src/js/lib/timeline", "src/js/lib/image-zoom"], function (_export) {
+System.register('src/js/main', ['github:components/jquery@2.1.3', 'src/js/lib/timeline', 'src/js/lib/image-zoom'], function (_export) {
   var $;
   return {
     setters: [function (_githubComponentsJquery213) {
-      $ = _githubComponentsJquery213["default"];
+      $ = _githubComponentsJquery213['default'];
     }, function (_srcJsLibTimeline) {}, function (_srcJsLibImageZoom) {}],
     execute: function () {
-      "use strict";
+      'use strict';
     }
   };
 });
