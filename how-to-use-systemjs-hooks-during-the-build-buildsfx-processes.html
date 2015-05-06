@@ -33,7 +33,7 @@
     }
   }
 }
-</code></pre><p>The main file remains unchanged. It&#39;s still <code>ember.debug</code> but now two files will be installed to <code>jspm_packages</code> folder when you run <code>jspm install</code> &mdash; <code>ember.debug.js</code> and <code>ember.prod.js</code>.</p><p>The next step is to modify the gulp task (or its equivalent if you don&#39;t use gulp) that builds the production version using jspm bundle or jspm bundle-sfx. Actually, JSPM is not needed for this task now. You&#39;ll need to install SystemJS intead:</p><pre><code class="lang-JavaScript">gulp.task(&#39;jspm&#39;, function() {
+</code></pre><p>The main file remains unchanged. It&#39;s still <code>ember.debug</code> but now two files will be installed to <code>jspm_packages</code> folder when you run <code>jspm install</code> &mdash; <code>ember.debug.js</code> and <code>ember.prod.js</code>.</p><p>The next step is to modify the gulp task (or its equivalent if you don&#39;t use gulp) that builds the production version using jspm bundle or jspm bundle-sfx. Actually, JSPM is not needed for this task now. You&#39;ll need to install SystemJS instead:</p><pre><code class="lang-JavaScript">gulp.task(&#39;jspm&#39;, function() {
   var builder = new jspm.Builder();
   var System = require(&#39;systemjs&#39;);
 
