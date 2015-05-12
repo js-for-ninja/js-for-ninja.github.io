@@ -16,7 +16,7 @@
     }
   }
 }
-</code></pre><p>This works well for development. But in order to make a production build I need to change this override and install the prod build instead. I didn&#39;t like that and I was looking for a better solution. Today I have finally found it (<a href="https://github.com/jspm/jspm-cli/issues/621#issuecomment-99083976">thanks for Guy Bedford</a>).</p><p>The first part of the solution is to change the override and add <code>ember.prod.js</code> to the list of files:</p><pre><code class="lang-JavaScript">&quot;github:components/ember@1.12.0-beta.1&quot;: {
+</code></pre><p>This works well for development. But in order to make a production build I need to change this override and install the prod build instead. I didn&#39;t like that and I was looking for a better solution. Today I have finally found it (<a href="https://github.com/jspm/jspm-cli/issues/621#issuecomment-99083976">thanks to Guy Bedford</a>).</p><p>The first part of the solution is to change the override and add <code>ember.prod.js</code> to the list of files:</p><pre><code class="lang-JavaScript">&quot;github:components/ember@1.12.0-beta.1&quot;: {
   &quot;main&quot;: &quot;ember.debug&quot;,
   &quot;files&quot;: [
     &quot;ember.debug.js&quot;, &quot;ember.prod.js&quot;
